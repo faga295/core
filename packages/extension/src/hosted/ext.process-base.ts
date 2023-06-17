@@ -70,11 +70,11 @@ export interface ExtProcessConfig {
   builtinCommands?: IBuiltInCommand[];
   customDebugChildProcess?: CustomChildProcessModule;
   customVSCodeEngineVersion?: string;
-   /**
+  /**
    * control rpcProtocol message timeout
    * default -1，it means disable
    */
-   rpcMessageTimeout?: number;
+  rpcMessageTimeout?: number;
 }
 
 async function initRPCProtocol(extInjector: Injector): Promise<any> {
@@ -130,8 +130,8 @@ function _wrapConsoleMethod(method: 'log' | 'info' | 'warn' | 'error') {
   Object.defineProperty(console, method, {
     set: () => {},
     get: () =>
-      function () {
-        original(arguments);
+      function (...args) {
+        original(...args);
       },
   });
 }
